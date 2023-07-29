@@ -1,7 +1,7 @@
 "use client"
 import axios from 'axios';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { CategoryColumn } from "./column"
+import { ColorsColumn } from "./column"
 import { Button } from "@/components/ui/button"
 import { Copy, Edit, Ghost, MoreHorizontal, Trash } from "lucide-react"
 import toast from "react-hot-toast"
@@ -10,7 +10,7 @@ import { useState } from "react"
 import { AlertModal } from '@/components/modals/alert-modal';
 
 interface CellActionPorps {
-    data: CategoryColumn
+    data: ColorsColumn
 }
 
 export const CellAction: React.FC<CellActionPorps> = ({ data }) => {
@@ -24,9 +24,9 @@ export const CellAction: React.FC<CellActionPorps> = ({ data }) => {
     const onDelete = async (id: string) => {
         try {
             setLoading(true);
-            await axios.delete(`/api/categories/${id}`);
+            await axios.delete(`/api/colors/${id}`);
             router.refresh()
-            toast.success("Category deleted successfully!");
+            toast.success("Size deleted successfully!");
             setOpen(false);
         } catch (error) {
             toast.error("Make sure you removed all products first")
@@ -52,7 +52,7 @@ export const CellAction: React.FC<CellActionPorps> = ({ data }) => {
                         <Copy className="mr-2 h-4 w-4" />
                         Copy Id
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => router.push(`/categories/${data.id}`)}>
+                    <DropdownMenuItem onClick={() => router.push(`/colors/${data.id}`)}>
                         <Edit className="mr-2 h-4 w-4" />
                         Update
                     </DropdownMenuItem>

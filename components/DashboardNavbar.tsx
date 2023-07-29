@@ -12,9 +12,34 @@ export default function NavBar() {
   }, [path])
   const routes = [
     {
+      href: '/productsfor',
+      label: 'Products For',
+      active: path === '/productsfor',
+    },
+    {
       href: '/categories',
       label: 'Categories',
       active: path === '/categories',
+    },
+    {
+      href: '/sizes',
+      label: 'Sizes',
+      active: path === '/sizes',
+    },
+    {
+      href: '/colors',
+      label: 'Colors',
+      active: path === '/colors',
+    },
+    {
+      href: '/products',
+      label: 'Products',
+      active: path === '/products',
+    },
+    {
+      href: '/orders',
+      label: 'Orders',
+      active: path === '/orders',
     }
   ];
   return (

@@ -18,6 +18,85 @@ model Users {
 model Category{
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
+  products Products[] @relation("CategoryToProduct")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+model ProductsFor{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  products Products[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Sizes{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  value String
+  products Products[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Colors{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  color String
+  value String
+  products Products[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Products{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  price Float
+  isFeatured Boolean @default(false)
+  isArchived Boolean @default(false)
+  productForId String @db.ObjectId
+  productFor ProductsFor @relation(fields: [productForId], references: [id])
+  categoryId String @db.ObjectId
+  category Category @relation("CategoryToProduct", fields: [categoryId], references: [id])
+  sizeId String @db.ObjectId
+  size Sizes @relation(fields: [sizeId], references: [id])
+  colorId String @db.ObjectId
+  color Colors @relation(fields: [colorId], references: [id])
+  images Image[]
+  orderItems OrderItem[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productForId])
+  @@index([categoryId])
+  @@index([sizeId])
+  @@index([colorId])
+}
+model Image{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  productId String @db.ObjectId
+  products Products @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model  Order{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  orderItems OrderItem[]
+  isPaid Boolean @default(false)
+  phone String @default("")
+  address String @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrderItem{
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  orderId String @db.ObjectId
+  order Order @relation(fields: [orderId], references: [id])
+  productId String @db.ObjectId
+  product Products @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
 }
