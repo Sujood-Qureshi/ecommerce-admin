@@ -15,17 +15,28 @@ export async function POST(req: Request) {
                 name: name,
             }
         })
-        if(isCategoryExist){
-            return new NextResponse("Category is already exist", { status:401})
+        if (isCategoryExist) {
+            return new NextResponse("Category is already exist", { status: 401 })
         }
         const category = await prismadb.category.create({
-            data:{
+            data: {
                 name: name,
             }
         })
         return NextResponse.json(category)
     } catch (error) {
         console.log('CATEGORY_ERROR', error);
+        return new NextResponse("Internal Error", { status: 500 })
+    }
+}
+
+export async function GET(req: Request) {
+    try {
+
+        const category = await prismadb.category.findMany({})
+        return NextResponse.json(category)
+    } catch (error) {
+        console.log('PRODUCTS_GET_ERROR', error);
         return new NextResponse("Internal Error", { status: 500 })
     }
 }

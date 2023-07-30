@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
 import { UserButton } from '@clerk/nextjs';
-import { Menu } from 'lucide-react';
+import { Home, Menu, ShieldAlert } from 'lucide-react';
+import { Button } from './ui/button';
 export default function NavBar() {
   const path = usePathname();
   const [SideBar, setSideBar] = useState(false);
@@ -12,34 +13,34 @@ export default function NavBar() {
   }, [path])
   const routes = [
     {
-      href: '/productsfor',
+      href: '/admin/productsfor',
       label: 'Products For',
-      active: path === '/productsfor',
+      active: path === '/admin/productsfor',
     },
     {
-      href: '/categories',
+      href: '/admin/categories',
       label: 'Categories',
-      active: path === '/categories',
+      active: path === '/admin/categories',
     },
     {
-      href: '/sizes',
+      href: '/admin/sizes',
       label: 'Sizes',
-      active: path === '/sizes',
+      active: path === '/admin/sizes',
     },
     {
-      href: '/colors',
+      href: '/admin/colors',
       label: 'Colors',
-      active: path === '/colors',
+      active: path === '/admin/colors',
     },
     {
-      href: '/products',
+      href: '/admin/products',
       label: 'Products',
-      active: path === '/products',
+      active: path === '/admin/products',
     },
     {
-      href: '/orders',
+      href: '/admin/orders',
       label: 'Orders',
-      active: path === '/orders',
+      active: path === '/admin/orders',
     }
   ];
   return (
@@ -58,7 +59,12 @@ export default function NavBar() {
             {/* big device navigation - start */}
             <div className="flex flex-1 items-center justify-center lg:items-stretch lg:justify-start">
               <div className="flex flex-shrink-0 items-center">
-                <img className="block lg:h-8 h-4 w-auto" src="/next.svg" alt="Your Company" />
+                <Link href={'/admin'}>
+                  <Button variant={'outline'} className='mx-6'>
+                    <ShieldAlert className='mr-2 h-4 w-4' />
+                    Admin Page
+                  </Button>
+                </Link>
               </div>
               <div className="hidden lg:ml-6 lg:block">
                 <div className="flex space-x-4 relative">
@@ -69,9 +75,15 @@ export default function NavBar() {
                 </div>
               </div>
             </div>
-              <div className='border border-gray-500 rounded-full p-1'>
-                <UserButton />
-              </div>
+            <Link href={'/'}>
+              <Button variant={'outline'} className='mx-6'>
+                <Home className='mr-2 h-4 w-4' />
+                Back to Home
+              </Button>
+            </Link>
+            <div className='border border-gray-500 rounded-full p-1'>
+              <UserButton />
+            </div>
           </div>
         </div>
       </div>
