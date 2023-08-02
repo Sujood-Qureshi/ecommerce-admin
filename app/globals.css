@@ -77,3 +77,28 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide scroll bar for WebKit-based browsers (Chrome, Safari, Opera) */
+.scrollHidden::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scroll bar for Firefox */
+/* Note: This selector targets the scrollbar track, not the thumb */
+/* To hide both the track and thumb, use ::-moz-scrollbar instead */
+.scrollHidden {
+  scrollbar-width: none;
+}
+
+/* Hide scroll bar for Internet Explorer and Edge */
+/* Note: This property is supported in Microsoft Edge 79 and later versions */
+/* For older versions, you may need to use JavaScript-based solutions */
+.scrollHidden {
+  -ms-overflow-style: none;
+}
+
+.right-shadow {
+  box-shadow: 5px 0px 7px -8px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 0px 7px -8px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 0px 7px -8px rgba(0, 0, 0, 0.5);
+}

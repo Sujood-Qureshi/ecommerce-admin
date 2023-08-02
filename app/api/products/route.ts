@@ -1,5 +1,4 @@
 import prismadb from "@/lib/prismadb";
-import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -13,13 +12,9 @@ export async function POST(req: Request) {
         categoryId,
         sizeId,
         colorId,
-        images } = body;
-    console.log('this is a body of products route.ts ', productForId)
+        images, } = body;
+    console.log('this is a body of products route.ts ', body);
     try {
-        const { userId } = auth();
-        if (!userId) {
-            return new NextResponse("Unauthorized", { status: 401 })
-        }
         if (!name) {
             return new NextResponse("Name is required", { status: 400 })
         }
@@ -39,7 +34,7 @@ export async function POST(req: Request) {
             return new NextResponse("ColorId is required", { status: 400 })
         }
         if (!images || !images.length) {
-            return new NextResponse("Name required", { status: 400 })
+            return new NextResponse("Image is required", { status: 400 })
         }
         const product = await prismadb.products.create({
             data: {
@@ -51,15 +46,16 @@ export async function POST(req: Request) {
                 colorId: colorId,
                 sizeId: sizeId,
                 productForId: productForId,
-                images: {
-                    createMany: {
-                        data: [
-                            ...images.map((image: { url: string }) => image)
-                        ]
-                    }
-                }
             }
         })
+        for (const image of images) {
+            await prismadb.image.create({
+                data: {
+                    url: image.url,
+                    productId: product.id,
+                },
+            });
+        }
         return NextResponse.json(product)
     } catch (error) {
         console.log('PRODUCTS_POST_ERROR', error);
@@ -73,13 +69,17 @@ export async function GET(req: Request) {
         const categoryId = searchParams.get('categoryId') || undefined;
         const colorId = searchParams.get('colorId') || undefined;
         const sizeId = searchParams.get('sizeId') || undefined;
+        const id = searchParams.get('id') || undefined;
+        const productForId = searchParams.get('productForId') || undefined;
         const isFeatured = searchParams.get('isFeatured');
 
         const product = await prismadb.products.findMany({
             where: {
+                id: id,
                 categoryId: categoryId,
                 colorId: colorId,
                 sizeId: sizeId,
+                productForId: productForId,
                 isFeatured: isFeatured ? true : undefined,
                 isArchived: false,
             },
