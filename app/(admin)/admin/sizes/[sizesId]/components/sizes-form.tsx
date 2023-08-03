@@ -4,15 +4,13 @@ import { Sizes } from '@prisma/client'
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import Headings from "@/components/ui/Headings"
-import { Separator } from "@/components/ui/separator"
 import toast from "react-hot-toast"
 import axios, { AxiosResponse } from "axios"
 import { useRouter } from "next/navigation"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 interface SizesFormProps {
     intialData: Sizes | null
 }

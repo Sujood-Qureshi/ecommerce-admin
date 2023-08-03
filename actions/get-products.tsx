@@ -1,5 +1,5 @@
 import qs from 'query-string'
-import { Category, Colors, Image, Products, Sizes } from "@prisma/client";
+import { Category, Colors, Image, Sizes } from "@prisma/client";
 import axios from "axios";
 
 interface Product {
@@ -16,7 +16,7 @@ interface Product {
 
 
 
-const URL = 'http://localhost:3000/api/products';
+const URL = `${process.env.FRONTEND_STORE_URL}/api/products`;
 interface Query{
     id?: string; 
     categoryId?: string;

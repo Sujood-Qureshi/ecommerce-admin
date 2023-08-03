@@ -4,9 +4,11 @@ import { NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import prismadb from '@/lib/prismadb';
 
-// const corsHeaders = {
-
-// }
+const corsHeaders = {
+    "Access-Control-Allow-Origin":"*",
+    "Access-Control-Allow-Methods":"GET, POST, PUT, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers":"Content-Type, Authorization",
+}
 
 export async function POST(req: Request){
     const  {productIds} = await req.json();
@@ -54,11 +56,13 @@ export async function POST(req: Request){
         phone_number_collection: {
             enabled: true
         },
-        success_url: `${process.env.FRONTEND_STORE_URL}/checkout?success=1`,
-        cancel_url: `${process.env.FRONTEND_STORE_URL}/checkout?canceled=1`,
+        success_url: `${process.env.FRONTEND_STORE_URL}/status?success=1`,
+        cancel_url: `${process.env.FRONTEND_STORE_URL}/status?canceled=1`,
         metadata:{
             orderId: order.id
         }
     })
-    return NextResponse.json({url: session.url})
+    return NextResponse.json({url: session.url},{
+        headers: corsHeaders
+    })
 }

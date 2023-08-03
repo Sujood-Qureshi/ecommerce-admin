@@ -1,4 +1,3 @@
-import { SideBarModal } from '@/Root Components/Root modals/sidebar-modal';
 import { SideFilterModal } from '@/Root Components/Root modals/sidefilter-modal';
 import ColorFilter from '@/Root Components/color-filter';
 import Filter from '@/Root Components/filter';

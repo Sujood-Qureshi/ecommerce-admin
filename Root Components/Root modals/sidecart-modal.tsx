@@ -1,44 +1,26 @@
 "use client"
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetClose, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { cn, formatter } from "@/lib/utils";
-import { Category, Colors, Sizes } from "@prisma/client";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { formatter } from "@/lib/utils";
 import { ShoppingCart } from "lucide-react";
 import { useEffect, useState } from "react";
-import ColorFilter from "../color-filter";
-import Filter from "../filter";
 import useCart from "@/hooks/use-cart";
 import CartItem from "../cart-item";
-import { useSearchParams } from "next/navigation";
 import axios from "axios";
-import toast from "react-hot-toast";
 
 export const SideCartModal = () => {
     const cart = useCart()
     const items = useCart((state)=> state.items);
-    const removeAll = useCart((state)=> state.removeAll);
-    const searchParams = useSearchParams();
-
     const totalPrice  = items.reduce((total, item)=>{
         return total + Number(item.price);
     },0)
     const onCheckout = async()=>{
-        const response = await axios.post(`http://localhost:3000/api/checkout`,{
+        const response = await axios.post(`${process.env.FRONTEND_STORE_URL}/api/checkout`,{
             productIds: items.map((item)=>item.id)
         })
         window.location = response.data.url
     }
-
-    useEffect(()=>{
-        if(searchParams.get('success')){
-            toast.success("Payment completed successfully")
-            removeAll()
-        }
-        if(searchParams.get('canceled')){
-            toast.error("Something went wrong")
-        }
-    },[searchParams, removeAll])
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true)

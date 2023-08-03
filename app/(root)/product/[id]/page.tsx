@@ -1,10 +1,9 @@
 import Gallery from '@/Root Components/Gallery';
+import BuyNow from '@/Root Components/buynow-button';
 import ProductCard from '@/Root Components/product-card';
 import getProducts from '@/actions/get-products'
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { formatter } from '@/lib/utils';
-import { ShoppingCart } from 'lucide-react';
 import React from 'react'
 
 export default async function page({ params }: { params: { id: string } }) {
@@ -53,10 +52,7 @@ export default async function page({ params }: { params: { id: string } }) {
                                 </div>
                             </div>
                             {/* <Button link={'#'} text={'Add to bag'}/> */}
-                            <Button variant='default' className='mt-4'>
-                                <ShoppingCart className='h-6 w-6 mr-2' />
-                                Add to cart
-                            </Button>
+                            <BuyNow id={product[0].id}/>
                         </div>
                     </div>
 

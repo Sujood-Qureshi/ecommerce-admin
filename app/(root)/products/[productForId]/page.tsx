@@ -2,7 +2,6 @@
 import NoProducts from '@/Root Components/no-products'
 import ProductCard from '@/Root Components/product-card'
 import getProducts from '@/actions/get-products'
-import prismadb from '@/lib/prismadb'
 import React from 'react'
 
 export default async function page({ params, searchParams }: { params: { productForId: string }, searchParams: { colorId: string, sizeId: string, categoryId: string } }) {

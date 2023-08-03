@@ -4,8 +4,6 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link';
 import Currency from './Currency';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import AddToCartButton from './addtocart-button';
 
@@ -36,7 +34,7 @@ export default function ProductCard({ productData }: { productData: Product }) {
                 </div>
             </CardHeader>
             <CardContent>
-                <div className='flex flex-col gap-2'>
+                <div className='flex flex-col gap-2 '>
                     <Link href={`/product/${productData.id}`}>
                         <p className='font-semibold text-base text-gray-600 hover:text-gray-900 select-none'>{productData.name}</p>
                     </Link>

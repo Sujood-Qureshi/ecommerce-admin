@@ -4,7 +4,6 @@ import SubBanner from "@/Root Components/sub-banner";
 import getProducts from "@/actions/get-products";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 
 export default async function Home() {
@@ -48,9 +47,6 @@ export default async function Home() {
                     </div>
                 </div>
             </section>
-            <p>admin dashbaord</p>
-            <Button className={cn("md:hidden")}>click me</Button>
-            <UserButton afterSignOutUrl="/" />
         </main>
     )
 }

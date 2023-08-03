@@ -1,7 +1,5 @@
 import React from 'react'
 import { ProductsForm } from './components/products-form'
-import { auth } from '@clerk/nextjs'
-import { redirect } from 'next/navigation';
 import prismadb from '@/lib/prismadb';
 import { Products, Image, Category, Colors, Sizes, ProductsFor } from '@prisma/client';
 

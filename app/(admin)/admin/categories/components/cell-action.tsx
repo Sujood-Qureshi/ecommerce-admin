@@ -3,7 +3,7 @@ import axios from 'axios';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { CategoryColumn } from "./column"
 import { Button } from "@/components/ui/button"
-import { Copy, Edit, Ghost, MoreHorizontal, Trash } from "lucide-react"
+import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react"
 import toast from "react-hot-toast"
 import { useRouter } from "next/navigation"
 import { useState } from "react"

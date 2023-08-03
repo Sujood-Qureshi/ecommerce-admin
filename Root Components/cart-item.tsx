@@ -4,10 +4,6 @@ import useCart from '@/hooks/use-cart';
 import { formatter } from '@/lib/utils';
 import { Category, Colors, Image as image, Sizes } from '@prisma/client';
 import Image from 'next/image';
-import axios from 'axios';
-import { useEffect } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { Toast } from 'react-hot-toast';
 
 interface Product {
     id: string;

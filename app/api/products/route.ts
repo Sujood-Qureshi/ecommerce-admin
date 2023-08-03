@@ -13,7 +13,6 @@ export async function POST(req: Request) {
         sizeId,
         colorId,
         images, } = body;
-    console.log('this is a body of products route.ts ', body);
     try {
         if (!name) {
             return new NextResponse("Name is required", { status: 400 })

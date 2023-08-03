@@ -1,7 +1,5 @@
 import React from 'react'
 import { ProductForForm } from './components/productsfor-form'
-import { auth } from '@clerk/nextjs'
-import { redirect } from 'next/navigation';
 import prismadb from '@/lib/prismadb';
 import { ProductsFor } from '@prisma/client';
 
@@ -21,19 +19,6 @@ export default async function Page({ params }: { params: { productsforId: string
     }
 
     return (
-        // <div className='flex-col'>
-        //     {category ?
-        //         <div className='flex-1 space-y-4 p-8 pt-6'>
-        //             <div className='flex items-center justify-between'>
-        //                 <CategoryForm intialData={category} />
-        //             </div>
-        //         </div> : <div className='flex-1 space-y-4 p-8 pt-6'>
-        //             <div className='flex items-center justify-between'>
-        //                 Create new Category
-        //             </div>
-        //         </div>
-        //     }
-        // </div>
         <div className='flex-col'>
             <div className='flex-1 space-y-4 p-8 pt-6'>
                 <div className='flex items-center justify-between'>

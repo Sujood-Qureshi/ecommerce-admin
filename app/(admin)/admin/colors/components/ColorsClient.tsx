@@ -4,8 +4,6 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Plus } from 'lucide-react'
 import React from 'react'
-import SampleModal from '@/components/modals/sample-modal'
-import { Category } from '@prisma/client'
 import { ColorsColumn, columns } from './column'
 import { DataTable } from '@/components/ui/data-table'
 

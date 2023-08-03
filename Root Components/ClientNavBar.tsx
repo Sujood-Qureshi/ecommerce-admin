@@ -3,8 +3,6 @@ import { UserButton } from '@clerk/nextjs';
 import { Store } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import prismadb from '@/lib/prismadb';
-import { ProductsFor } from '@prisma/client';
-import axios from 'axios';
 import { SideBarModal } from './Root modals/sidebar-modal';
 import MainNav from './main-nav';
 import { SideCartModal } from './Root modals/sidecart-modal';

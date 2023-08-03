@@ -7,12 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import Headings from "@/components/ui/Headings"
-import { Separator } from "@/components/ui/separator"
 import toast from "react-hot-toast"
 import axios, { AxiosResponse } from "axios"
 import { useRouter } from "next/navigation"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import ImageUpload from "@/components/ui/image-upload"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -82,7 +80,6 @@ export const ProductsForm: React.FC<ProductsFormProps> = ({ intialData, categori
         return error.response !== undefined;
     };
     const onCreate = async (data: ProductsFormValues) => {
-        console.log('this is from onCreate function ',data);
         try {
             setLoading(true);
             const response: AxiosResponse = await axios.post(`/api/products`, data);

@@ -3,7 +3,6 @@ import qs from 'query-string'
 import { Category, Colors, Sizes } from '@prisma/client'
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
-import { Checkbox } from '@/components/ui/checkbox';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
