@@ -52,7 +52,7 @@ export async function POST(req: Request) {
                 }
             },
             data: {
-                isArchived: true,
+                isArchived: false, // archaived product functinality is stop, to start it again change false to true
             }
         })
     }
