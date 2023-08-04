@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
 export default function BuyNow({id}:{id:string}) {
     const onCheckout = async(productId: string)=>{
         const items = [productId]
-        const response = await axios.post(`${process.env.FRONTEND_STORE_URL}/api/checkout`,{
+        const response = await axios.post(`/api/checkout`,{
             productIds: items.map((item)=>item)
         })
         window.location = response.data.url

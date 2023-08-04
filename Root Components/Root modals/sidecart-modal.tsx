@@ -16,7 +16,7 @@ export const SideCartModal = () => {
         return total + Number(item.price);
     },0)
     const onCheckout = async()=>{
-        const response = await axios.post(`${process.env.FRONTEND_STORE_URL}/api/checkout`,{
+        const response = await axios.post(`/api/checkout`,{
             productIds: items.map((item)=>item.id)
         })
         window.location = response.data.url
